@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} bg-slate-100`}>
+      <body className={`${montserrat.className} bg-slate-100`} suppressHydrationWarning={true}>
         <Navigation />
         {children}
       </body>
