@@ -24,7 +24,7 @@ export default function Cart() {
                 <div>
                     <h1 className="font-semibold text-lg">Fried Rice (x3)</h1>
                     <p className="text-slate-500 mt-1 mb-3">This is the short description of the food</p>
-                    <p className="mb-5">$ 23.00</p>
+                    <p className="mb-5 font-semibold">$ 23.00</p>
 
                     <button className="border border-red-500 text-red-500 px-3 py-1 rounded-3xl text-sm active:text-white active:bg-red-500">Remove</button>
                 </div>
