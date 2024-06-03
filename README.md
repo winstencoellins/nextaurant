@@ -6,6 +6,8 @@ Technologies used in this project:
 - Next Js (version 14)
 - Tailwind CSS
 - npm (node package manager)
+- Prisma ORM
+- PostgreSQL
 
 ## Installation / Setup
 
@@ -30,3 +32,10 @@ Run the code
 ```
 npm run dev
 ```
+
+
+## Database Diagram
+
+Image below is showing the database diagram of the possible database table relationship.
+
+![alt text](/public/images/db-diagram.png)
