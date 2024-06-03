@@ -8,6 +8,7 @@ import arrow from '@/public/svgs/arrow.svg'
 import order from '@/public/svgs/order.svg'
 import placeholder from '@/public/images/placeholder.png'
 
+
 export default function FoodDetail({ params }: {params: { slug: string }}) {
     const [count, setCount] = useState(1)
 
