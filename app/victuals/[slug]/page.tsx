@@ -23,9 +23,9 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
                 </Link>
             </div>
 
-            <div className="my-28 flex justify-between items-center pl-5">
+            <div className="my-16 flex justify-between items-center pl-5">
                 <div>
-                    <h1 className="text-4xl font-medium w-3/4">Chicken Fried Rice</h1>
+                    <h1 className="text-2xl font-medium w-3/4">Chicken Fried Rice</h1>
                     <div className="my-5">
                         <h3 className="text-slate-500">Price</h3>
                         <p className="font-semibold text-xl">$ 21.99</p>
@@ -42,15 +42,15 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
                 <Image src={placeholder} width={150} height={300} alt='placeholder' />
             </div>
 
-            <div className="absolute bg-white bottom-0 left-0 w-screen rounded-tr-3xl rounded-tl-3xl">
+            <div className="mt-5 bg-white absolute left-0 bottom-0 rounded-tr-3xl rounded-tl-3xl">
                 <div className="w-10/12 mx-auto py-10">
                     <div className="mb-5">
                         <h1 className="font-semibold text-xl">Description</h1>
                     </div>
                     <p className="leading-relaxed">This Italian salad is full of all the right flavors and textures: crisp lettuce, crunchy garlic croutons, and zingy pepperoncini. It&apos;s covered in punchy, herby Italian vinaigrette that makes the flavors sing! It can play sidekick to just about anything.</p>
                     <div className="flex justify-between mt-10">
-                        <button className="bg-black px-8 py-5 rounded-2xl text-white text-lg">Order Now</button>
-                        <button className="border border-black px-8 py-5 rounded-2xl">Add to Cart</button>
+                        <button className="bg-black px-5 py-3 rounded-2xl text-white text-lg">Order Now</button>
+                        <button className="border border-black px-5 py-3 rounded-2xl">Add to Cart</button>
                     </div>
                 </div>
             </div>
