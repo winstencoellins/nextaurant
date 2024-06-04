@@ -12,3 +12,56 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum CATEGORY {
+  Food
+  Drink
+  Dessert
+}
+
+model User {
+  id            String      @id @default(uuid())
+  username      String      @unique
+  email         String
+  firstName     String  
+  lastName      String
+  password      String
+
+  order         Order[]
+  cart          Cart[]
+}
+
+model Victual {
+  id                    String      @id @default(uuid())
+  category              CATEGORY
+  name                  String
+  shortDescription      String
+  price                 Int
+  description           String
+
+  order                 Order[]
+  cart                  Cart[]
+}
+
+model Cart {
+  id              Int      @id @default(autoincrement())
+
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+
+  victualId       String
+  victual         Victual  @relation(fields: [victualId], references: [id])
+}
+
+model Order {
+  id              Int           @id @default(autoincrement())
+  orderNumber     String        
+  dateCreated     DateTime      @default(now())
+  amount          Int           
+
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+
+  victualId       String
+  victual         Victual       @relation(fields: [victualId], references: [id])
+}

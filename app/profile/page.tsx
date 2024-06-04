@@ -44,8 +44,7 @@ export default function Profile() {
 
             <div className="absolute bottom-0 left-0 bg-white shadow-xl py-5 w-screen">
                 <div className="w-11/12 mx-auto flex justify-around">
-                    <Link href='/' className='bg-black px-3 py-2 text-white rounded-xl text-lg w-[175px] text-center'>Back to Home</Link>
-                    <Link href='/profile/edit' className='border border-black px-3 py-2 rounded-xl text-lg w-[175px] text-center'>Edit Profile</Link>
+                    <Link href='/profile/edit' className='border border-black px-3 py-2 rounded-xl w-full text-lg text-center'>Edit Profile</Link>
                 </div>
             </div>
         </div>

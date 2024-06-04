@@ -14,7 +14,7 @@ export default function Navigation() {
     return (
         <div>
             {
-                pathname.includes('victuals') || pathname.includes('cart') || pathname.includes('profile') || pathname.includes('login') ? 
+                pathname.includes('victuals') || pathname.includes('cart') || pathname.includes('profile') || pathname.includes('login') || pathname.includes('admin') ? 
                 <div></div> 
                 :
                 <div className="flex justify-around bg-black fixed -bottom-5 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 mx-auto py-2 rounded-3xl">
