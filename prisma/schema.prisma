@@ -19,16 +19,29 @@ enum CATEGORY {
   Dessert
 }
 
-model User {
-  id            String      @id @default(uuid())
-  username      String      @unique
-  email         String
-  firstName     String  
-  lastName      String
-  password      String
+enum GENDER {
+  Male
+  Female
+}
 
-  order         Order[]
-  cart          Cart[]
+enum ROLE {
+  Admin
+  Employee
+}
+
+model User {
+  id              String      @id @default(uuid())
+  username        String      @unique
+  email           String
+  firstName       String  
+  lastName        String
+  password        String
+  gender          GENDER
+  createdDate     DateTime    @default(now())
+  role            ROLE        @default(Employee)
+
+  order           Order[]
+  cart            Cart[]
 }
 
 model Victual {
@@ -38,24 +51,25 @@ model Victual {
   shortDescription      String
   price                 Int
   description           String
+  createdDate           DateTime    @default(now())
 
   order                 Order[]
   cart                  Cart[]
 }
 
 model Cart {
-  id              Int      @id @default(autoincrement())
+  id              Int         @id @default(autoincrement())
 
   userId          String
-  user            User     @relation(fields: [userId], references: [id])
+  user            User        @relation(fields: [userId], references: [id])
 
   victualId       String
-  victual         Victual  @relation(fields: [victualId], references: [id])
+  victual         Victual     @relation(fields: [victualId], references: [id])
 }
 
 model Order {
   id              Int           @id @default(autoincrement())
-  orderNumber     String        
+  orderNumber     String
   dateCreated     DateTime      @default(now())
   amount          Int           
 

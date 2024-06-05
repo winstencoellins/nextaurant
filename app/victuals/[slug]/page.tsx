@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import arrow from '@/public/svgs/arrow.svg'
 import order from '@/public/svgs/order.svg'
-import placeholder from '@/public/images/placeholder.png'
+import placeholder from '@/public/svgs/menu-placeholder.svg'
 
 
 export default function FoodDetail({ params }: {params: { slug: string }}) {

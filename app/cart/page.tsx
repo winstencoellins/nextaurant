@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import placeholder from '@/public/images/placeholder.png'
+import placeholder from '@/public/svgs/menu-placeholder.svg'
 import arrow from '@/public/svgs/arrow.svg'
 import order from '@/public/svgs/order.svg'
 

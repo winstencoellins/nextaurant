@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import search from '@/public/svgs/search.svg'
-import placeholder from '@/public/images/placeholder.png'
+import placeholder from '@/public/svgs/menu-placeholder.svg'
 import profilePlaceholder from '@/public/images/profile-placeholder.jpg'
 
 
@@ -54,7 +54,9 @@ export default function Home() {
         {
           menus.map((m) => (
             <Link href='/victuals/any-description' key={m.id} className="bg-white rounded-3xl shadow-xl px-4 py-6">
-              <Image src={placeholder} height={100} width={100} alt='placeholder' />
+              <div className="flex justify-center">
+                <Image src={placeholder} height={100} width={100} alt='placeholder' />
+              </div>
               <h1 className="font-semibold text-sm my-2">{m.name}</h1>
               <p className="text-xs text-slate-500">{m.short}</p>
               <p className="text-sm mt-3 font-semibold">$ {m.price.toFixed(2)}</p>
