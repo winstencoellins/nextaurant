@@ -1,13 +1,43 @@
 'use client'
 
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function EditEmployee ({ params }: { params: { slug: string } }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
+    const [gender, setGender] = useState('')
+
+    useEffect(() => {
+        fetchEmployeeDetail()
+    }, [])
+
+    const fetchEmployeeDetail = async () => {
+        const formData = new FormData()
+
+        formData.append('id', params.slug)
+
+        const response = await fetch('/api/employeeDetail', {
+            method: 'POST',
+            body: formData
+        })
+
+        const data = await response.json()
+
+        setFirstName(data['employee'].firstName)
+        setLastName(data['employee'].lastName)
+        setUsername(data['employee'].username)
+        setEmail(data['employee'].email)
+        setGender(data['employee'].gender)
+
+        selectedAttribute()
+    }
+
+    const selectedAttribute = () => {
+        console.log(gender)
+    }
 
     return (
         <div className="mx-5 mt-8 w-full">
@@ -39,8 +69,8 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
                     <div className="flex flex-col mb-5">
                         <label className="mb-1 text-sm">Gender</label>
                         <select name='gender' className="px-3 py-2 border border-slate-300 rounded-lg text-sm">
-                            <option value='male'>Male</option>
-                            <option value='female'>Female</option>
+                            <option id='male' value='male'>Male</option>
+                            <option id='female' value='female'>Female</option>
                         </select>
                     </div>
 
