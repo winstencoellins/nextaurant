@@ -8,7 +8,7 @@ export default function Dashboard() {
         return dayNames[today.getDay()] + ", " + today.getDate() + " " + monthNames[today.getMonth()] + " " + today.getFullYear()
     }
     return (
-        <div className="mx-5 mt-8 w-full">
+        <div className="ml-72 mr-8 my-8 w-full">
             <h1 className="text-2xl font-semibold">Dashboard</h1>
 
             <div className="mt-3">

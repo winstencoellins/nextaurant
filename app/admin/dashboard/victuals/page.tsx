@@ -1,11 +1,27 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
 
 import search from '@/public/svgs/search.svg'
+import { useEffect, useState } from "react"
 
 export default function Victuals() {
+    const [victuals, setVictuals] = useState([])
+
+    useEffect(() => {
+        fetchVictuals()
+    }, [])
+
+    const fetchVictuals = async () => {
+        const res = await fetch('http://localhost:3000/api/victuals')
+        const data = await res.json()
+
+        setVictuals(data['victuals'])
+    }
+
     return (
-        <div className="mx-5 mt-8 w-full">
+        <div className="ml-72 mr-8 my-8 w-full">
             <h1 className="text-2xl font-semibold">Victuals</h1>
             
             <div className="mt-5 bg-white py-5 px-5 rounded-lg shadow-lg">
@@ -29,14 +45,18 @@ export default function Victuals() {
                         </tr>
                     </thead>
                     <tbody className="text-sm">
-                        <tr className="border-b border-slate-300">
-                            <td className="py-4">Pad Thai</td>
-                            <td>Food</td>
-                            <td>A classic Thai stir-fried noodle dish.</td>
-                            <td>$ 10.00</td>
-                            <td>2024-06-05</td>
-                            <td><Link href='/admin/dashboard/victuals/edit/test' className="bg-black text-white px-3 py-2 rounded-lg">View Detail</Link></td>
-                        </tr>
+                        { 
+                            victuals.map((v:any) => (
+                                <tr key={v.id} className="border-b border-slate-300">
+                                    <td className="py-4">{v.name}</td>
+                                    <td>{v.category}</td>
+                                    <td>{v.shortDescription.slice(0, 50)} ...</td>
+                                    <td>${v.price}</td>
+                                    <td>{v.createdDate.split("T")[0]}</td>
+                                    <td><Link href={`/admin/dashboard/victuals/edit/${v.id}`} className="bg-black text-white px-3 py-2 rounded-lg">View Detail</Link></td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>

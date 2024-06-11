@@ -10,7 +10,7 @@ export default function Layout({
   }>) {
     return (
       <div className="flex">
-        <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l">
+        <aside className="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l fixed">
             <Link href="#">
                 Nextaurant
             </Link>

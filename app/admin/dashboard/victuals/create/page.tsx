@@ -30,7 +30,7 @@ export default function CreateVictuals() {
     }
 
     return (
-        <div className="mx-5 mt-8 w-full">
+        <div className="ml-72 mr-8 my-8 w-full">
             <h1 className="text-2xl font-semibold">Add New Victual</h1>
 
             <div className="mt-5 bg-white py-5 px-5 rounded-lg shadow-lg">
@@ -43,9 +43,9 @@ export default function CreateVictuals() {
                         <div className="flex flex-col">
                             <label className="mb-1 text-sm">Category</label>
                             <select className="px-3 py-2 rounded-lg border border-slate-300 text-sm" name='category'>
-                                <option value='food'>Food</option>
-                                <option value='drink'>Drink</option>
-                                <option value='dessert'>Dessert</option>
+                                <option value='Food'>Food</option>
+                                <option value='Drink'>Drink</option>
+                                <option value='Dessert'>Dessert</option>
                             </select>
                         </div>
                     </div>

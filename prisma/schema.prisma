@@ -49,7 +49,7 @@ model Victual {
   category              CATEGORY
   name                  String
   shortDescription      String
-  price                 Int
+  price                 String
   description           String
   createdDate           DateTime    @default(now())
 
@@ -71,7 +71,7 @@ model Order {
   id              Int           @id @default(autoincrement())
   orderNumber     String
   dateCreated     DateTime      @default(now())
-  amount          Int           
+  amount          String           
 
   userId          String
   user            User          @relation(fields: [userId], references: [id])

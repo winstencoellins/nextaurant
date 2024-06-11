@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nextaurant | Order",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} bg-slate-100`} suppressHydrationWarning={true}>
+      <body className={`${outfit.className} bg-slate-100`} suppressHydrationWarning={true}>
         <Navigation />
         {children}
       </body>

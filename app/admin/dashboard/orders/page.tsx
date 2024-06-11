@@ -5,7 +5,7 @@ import search from '@/public/svgs/search.svg'
 
 export default function Orders() {
     return (
-        <div className="mx-5 mt-8 w-full">
+        <div className="ml-72 mr-8 my-8 w-full">
             <h1 className="text-2xl font-semibold">Orders</h1>
 
             <div className="mt-5 bg-white py-5 px-5 rounded-lg shadow-lg">

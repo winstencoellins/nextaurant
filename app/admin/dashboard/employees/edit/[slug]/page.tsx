@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 
 export default function EditEmployee ({ params }: { params: { slug: string } }) {
     const [firstName, setFirstName] = useState('')
@@ -9,6 +9,10 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [gender, setGender] = useState('')
+
+    const [first, setFirst] = useState('')
+    const [last, setLast] = useState('')
+
 
     useEffect(() => {
         fetchEmployeeDetail()
@@ -19,7 +23,7 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
 
         formData.append('id', params.slug)
 
-        const response = await fetch('/api/employeeDetail', {
+        const response = await fetch('/api/employee-detail', {
             method: 'POST',
             body: formData
         })
@@ -32,16 +36,20 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
         setEmail(data['employee'].email)
         setGender(data['employee'].gender)
 
-        selectedAttribute()
+        setFirst(data['employee'].firstName)
+        setLast(data['employee'].lastName)
+
+        selectedAttribute(data['employee'].gender)
     }
 
-    const selectedAttribute = () => {
-        console.log(gender)
+    const selectedAttribute = (gender: any) => {
+        const g:any = document.getElementById(gender.toLowerCase())
+        g.selected = true
     }
 
     return (
-        <div className="mx-5 mt-8 w-full">
-            <h1 className="text-2xl font-semibold">Edit {params.slug}</h1>
+        <div className="ml-72 mr-8 my-8 w-full">
+            <h1 className="text-2xl font-semibold">Edit {first + " " + last}</h1>
 
             <div className="mt-5 bg-white py-5 px-5 rounded-lg shadow-lg">
                 <form>
@@ -68,7 +76,7 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
 
                     <div className="flex flex-col mb-5">
                         <label className="mb-1 text-sm">Gender</label>
-                        <select name='gender' className="px-3 py-2 border border-slate-300 rounded-lg text-sm">
+                        <select id='genders' onChange={(event) => setGender(event.target.value)} className="px-3 py-2 border border-slate-300 rounded-lg text-sm">
                             <option id='male' value='male'>Male</option>
                             <option id='female' value='female'>Female</option>
                         </select>
