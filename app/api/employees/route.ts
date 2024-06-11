@@ -9,27 +9,35 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const username:any = data.get('username')
     const password:any = data.get('password')
     const email:any = data.get('email')
+    const gender:any = data.get('gender')
 
-    const existUser = prisma.user.findUnique({
+    const existUser = await prisma.user.findUnique({
         where: {
-            username: username,
+            'username': username,
         }
     })
 
-    console.log('Exist User', existUser)
-    // const user = prisma.user.create({
-    //     data: {
-    //         firstName: firstName,
-    //         lastName: lastName,
-    //         username: username,
-    //         email: email,
-    //         password: password,
-    //     }
-    // })
+    if (existUser != null) {
+        return NextResponse.json({ "success": false, "message": "User with this username already exist" })
+    }
+
+
+    const user = await prisma.user.create({
+        data: {
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            email: email,
+            password: password,
+            gender: gender,
+        }
+    })
 
     return NextResponse.json({ "success": true, "message": "Successfully created a user" })
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {
-    
+    const users = await prisma.user.findMany()
+
+    return NextResponse.json({ users })
 }
