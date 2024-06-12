@@ -14,7 +14,7 @@ export default function Victuals() {
     }, [])
 
     const fetchVictuals = async () => {
-        const res = await fetch('http://localhost:3000/api/victuals')
+        const res = await fetch('http://localhost:3000/api/victuals', { cache: 'force-cache' })
         const data = await res.json()
 
         setVictuals(data['victuals'])
