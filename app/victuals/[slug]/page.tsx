@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import arrow from '@/public/svgs/arrow.svg'
 import order from '@/public/svgs/order.svg'
@@ -11,6 +11,31 @@ import placeholder from '@/public/svgs/menu-placeholder.svg'
 
 export default function FoodDetail({ params }: {params: { slug: string }}) {
     const [count, setCount] = useState(1)
+
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState('')
+    const [desc, setDesc] = useState('')
+
+    useEffect(() => {
+        fetchVictualDetail()
+    }, [])
+
+    const fetchVictualDetail = async () => {
+        const formData = new FormData();
+
+        formData.append('id', params.slug)
+
+        const res = await fetch('/api/victual-detail', {
+            method: 'POST',
+            body: formData,
+        })
+
+        const data = await res.json()
+
+        setName(data['victualDetail'].name)
+        setPrice(data['victualDetail'].price)
+        setDesc(data['victualDetail'].description)
+    }
 
     return (
         <div className="w-11/12 mx-auto">
@@ -25,10 +50,10 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
 
             <div className="my-16 flex justify-between items-center pl-5">
                 <div>
-                    <h1 className="text-2xl font-medium w-3/4">Chicken Fried Rice</h1>
+                    <h1 className="text-2xl font-medium w-3/4">{name}</h1>
                     <div className="my-5">
                         <h3 className="text-slate-500">Price</h3>
-                        <p className="font-semibold text-xl">$ 21.99</p>
+                        <p className="font-semibold text-xl">$ {price}</p>
                     </div>
                     <div className="">
                         <h3 className="text-xl text-slate-500 mb-2">Choice quantity</h3>
@@ -47,7 +72,7 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
                     <div className="mb-5">
                         <h1 className="font-semibold text-xl">Description</h1>
                     </div>
-                    <p className="leading-relaxed">This Italian salad is full of all the right flavors and textures: crisp lettuce, crunchy garlic croutons, and zingy pepperoncini. It&apos;s covered in punchy, herby Italian vinaigrette that makes the flavors sing! It can play sidekick to just about anything.</p>
+                    <p className="leading-relaxed">{desc}</p>
                     <div className="flex justify-between mt-10">
                         <button className="bg-black px-5 py-3 rounded-2xl text-white text-lg">Order Now</button>
                         <button className="border border-black px-5 py-3 rounded-2xl">Add to Cart</button>
