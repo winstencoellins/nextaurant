@@ -8,90 +8,17 @@ import { useEffect, useState } from "react"
 
 export default function Victuals() {
     const [victuals, setVictuals] = useState([])
-    const [valid, setValid] = useState(true)
-    const [validName, setValidName] = useState(true)
-    const [validShort, setValidShort] = useState(true)
-    const [validDesc, setValidDesc] = useState(true)
-    const [validPrice, setValidPrice] = useState(true)
+
 
     useEffect(() => {
         fetchVictuals()
     }, [])
 
     const fetchVictuals = async () => {
-        const res = await fetch('http://localhost:3000/api/victuals', { cache: 'force-cache' })
+        const res = await fetch('http://localhost:3000/api/victuals')
         const data = await res.json()
 
         setVictuals(data['victuals'])
-    }
-
-        /**
-     * Handles the validation of the formData based on user
-     * input. It checks name, short description, description, and
-     * price
-     * @param formData 
-     * @returns boolean
-     */
-    const formValidation = (formData: any) => {
-        const [name, short, desc, price]: [any, any, any, any] = [formData.get('name'), formData.get('short'), formData.get('desc'), formData.get('price')]
-        const [nameErrMsg, shortErrMsg, descErrMsg, priceErrMsg]: [any, any, any, any] = [document.getElementById('name-err-msg'), document.getElementById('short-err-msg'), document.getElementById('desc-err-msg'), document.getElementById('price-err-msg')]
-        let valid = true
-        let priceRegex = /^(0|[1-9]\d*)(\.\d+)?$/g
-
-        if (name === "") {
-            nameErrMsg.innerHTML = "Can't be empty."
-            valid = false
-
-            setValidName(false)
-        } else {
-            nameErrMsg.innerHTML = ""
-            valid = true
-
-            setValidName(true)
-        }
-
-        if (short === '') {
-            shortErrMsg.innerHTML = "Can't be empty."
-            valid = false
-
-            setValidShort(false)
-        } else {
-            shortErrMsg.innerHTML = ""
-            valid = true
-
-            setValidShort(true)
-        }
-
-        if (desc === '') {
-            descErrMsg.innerHTML = "Can't be empty."
-            valid = false
-            
-            setValidDesc(false)
-        } else {
-            descErrMsg.innerHTML = ""
-            valid = true
-
-            setValidDesc(true)
-        }
-
-        if (price === '') {
-            priceErrMsg.innerHTML = "Can't be empty."
-            valid = false
-
-            setValidPrice(false)
-        } else if (price.match(priceRegex) === null) {
-            priceErrMsg.innerHTML = 'Please enter a valid amount with two decimal precision.'
-            valid = false
-
-            setValidPrice(false)
-        } else {
-            priceErrMsg.innerHTML = ""
-            valid = true
-
-            setValidPrice(true)
-        }
-
-        return valid
     }
 
     return (

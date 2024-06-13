@@ -32,7 +32,7 @@ export default function Home() {
    * and show it to the user.
    */
   const fetchMenus = async () => {
-    const res = await fetch('http://localhost:3000/api/victuals', { cache: 'force-cache' })
+    const res = await fetch('http://localhost:3000/api/victuals')
     const data = await res.json()
 
     let result = data['victuals'].filter((menu: any) => menu.category == 'Food')

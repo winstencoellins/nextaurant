@@ -62,7 +62,6 @@ export default function CreateVictuals() {
             setValidName(false)
         } else {
             nameErrMsg.innerHTML = ""
-            valid = true
 
             setValidName(true)
         }
@@ -74,7 +73,6 @@ export default function CreateVictuals() {
             setValidShort(false)
         } else {
             shortErrMsg.innerHTML = ""
-            valid = true
 
             setValidShort(true)
         }
@@ -86,7 +84,6 @@ export default function CreateVictuals() {
             setValidDesc(false)
         } else {
             descErrMsg.innerHTML = ""
-            valid = true
 
             setValidDesc(true)
         }
@@ -103,7 +100,6 @@ export default function CreateVictuals() {
             setValidPrice(false)
         } else {
             priceErrMsg.innerHTML = ""
-            valid = true
 
             setValidPrice(true)
         }

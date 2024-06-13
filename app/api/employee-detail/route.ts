@@ -16,9 +16,32 @@ export async function POST(req:NextRequest, res:NextResponse) {
             username: true,
             email: true,
             gender: true,
+            password: true,
         }
     })
     
 
     return NextResponse.json({ "success": true, employee })
+}
+
+export async function PUT(req: NextRequest, res: NextResponse) {
+    const data = await req.formData()
+
+    const [first, last, username, password, email, gender, id]: any[] = [data.get('firstName'), data.get('lastName'), data.get('username'), data.get('password'),data.get('email'), data.get('gender'), data.get('id')]
+
+    const updateEmployee = await prisma.user.update({
+        where: {
+            id: id
+        },
+        data: {
+            firstName: first,
+            lastName: last,
+            username: username,
+            password: password,
+            email: email,
+            gender: gender
+        }
+    })
+
+    return NextResponse.json({ "success": true })
 }

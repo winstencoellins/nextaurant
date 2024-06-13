@@ -70,7 +70,6 @@ export default function CreateEmployee() {
             setValidFirstname(false)
         } else {
             firstnameErrMsg.innerHTML = ""
-            valid = true
 
             setValidFirstname(true)
         }
@@ -82,7 +81,6 @@ export default function CreateEmployee() {
             setValidLastname(false)
         } else {
             lastnameErrMsg.innerHTML = ""
-            valid = true
 
             setValidLastname(true)
         }
@@ -94,7 +92,6 @@ export default function CreateEmployee() {
             setValidUsername(false)
         } else {
             usernameErrMsg.innerHTML = ""
-            valid = true
 
             setValidUsername(true)
         }
@@ -106,7 +103,6 @@ export default function CreateEmployee() {
             setValidPassword(false)
         } else {
             passwordErrMsg.innerHTML = ""
-            valid = true
 
             setValidPassword(true)
         }
@@ -118,7 +114,6 @@ export default function CreateEmployee() {
             setValidEmail(false)
         } else {
             emailErrMsg.innerHTML = ""
-            valid = true
 
             setValidEmail(true)
         }
@@ -163,7 +158,7 @@ export default function CreateEmployee() {
 
                     <div className="flex flex-col mb-5">
                         <label className="mb-1 text-sm">Email</label>
-                        <input type='email' name='email' placeholder='johndoe@example.com' className={clsx("px-3 py-1.5 rounded-lg border text-sm", validEmail ? "border-slate-300" : "border-red-500")} />
+                        <input type='text' name='email' placeholder='johndoe@example.com' className={clsx("px-3 py-1.5 rounded-lg border text-sm", validEmail ? "border-slate-300" : "border-red-500")} />
                         <p className="text-red-500 text-xs mt-1" id="email-err-msg"></p>
                     </div>
 

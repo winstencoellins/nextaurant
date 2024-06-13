@@ -20,13 +20,13 @@ export default function Employees() {
     }, [])
 
     const fetchUsers = async () => {
-        const response = await fetch('http://localhost:3000/api/employees', { cache: 'force-cache' })
+        const response = await fetch('http://localhost:3000/api/employees')
         const data = await response.json()
 
         setUsers(data['users'])
     }
 
-        /**
+    /**
      * Handles the validation of the formData based on user
      * input. It checks name, short description, description, and
      * price
@@ -45,8 +45,6 @@ export default function Employees() {
                 setValidFirstname(false)
             } else {
                 firstnameErrMsg.innerHTML = ""
-                valid = true
-    
                 setValidFirstname(true)
             }
     
@@ -57,8 +55,6 @@ export default function Employees() {
                 setValidLastname(false)
             } else {
                 lastnameErrMsg.innerHTML = ""
-                valid = true
-    
                 setValidLastname(true)
             }
     
@@ -69,8 +65,6 @@ export default function Employees() {
                 setValidUsername(false)
             } else {
                 usernameErrMsg.innerHTML = ""
-                valid = true
-    
                 setValidUsername(true)
             }
     
@@ -81,8 +75,6 @@ export default function Employees() {
                 setValidPassword(false)
             } else {
                 passwordErrMsg.innerHTML = ""
-                valid = true
-    
                 setValidPassword(true)
             }
     
@@ -93,8 +85,6 @@ export default function Employees() {
                 setValidEmail(false)
             } else {
                 emailErrMsg.innerHTML = ""
-                valid = true
-    
                 setValidEmail(true)
             }
     
