@@ -15,6 +15,7 @@ export default function CreateEmployee() {
     const [validUsername, setValidUsername] = useState(true)
     const [validPassword, setValidPassword] = useState(true)
     const [validEmail, setValidEmail] = useState(true)
+    const [show, setShow] = useState(false)
     
     const router = useRouter()
 
@@ -39,6 +40,14 @@ export default function CreateEmployee() {
             if (data.success) {
                 return router.push('/admin/dashboard/employees')
             }
+        }
+    }
+
+    const handleChange = () => {
+        if (show){
+            setShow(false)
+        } else {
+            setShow(true)
         }
     }
 
@@ -142,10 +151,14 @@ export default function CreateEmployee() {
                         <p className="text-red-500 text-xs mt-1" id="username-err-msg"></p>
                     </div>
 
-                    <div className="flex flex-col mb-5">
+                    <div className="flex flex-col">
                         <label className="mb-1 text-sm">Password</label>
-                        <input type='password' name='password' placeholder='johndoe' className={clsx("px-3 py-1.5 rounded-lg border text-sm", validPassword ? "border-slate-300" : "border-red-500")} />
+                        <input type={show ? 'text' : 'password'} id="show" name='password' placeholder='johndoe' className={clsx("px-3 py-1.5 rounded-lg border text-sm", validPassword ? "border-slate-300" : "border-red-500")} />
                         <p className="text-red-500 text-xs mt-1" id="password-err-msg"></p>
+                    </div>
+                    <div className="flex items-center mb-5 mt-1">
+                        <input type='checkbox' onChange={handleChange} />
+                        <label className="text-xs ml-1">Show Password</label>
                     </div>
 
                     <div className="flex flex-col mb-5">
