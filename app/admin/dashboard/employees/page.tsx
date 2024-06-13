@@ -8,6 +8,12 @@ import search from '@/public/svgs/search.svg'
 
 export default function Employees() {
     const [users, setUsers] = useState([])
+    const [valid, setValid] = useState(true)
+    const [validFirstname, setValidFirstname] = useState(true)
+    const [validLastname, setValidLastname] = useState(true)
+    const [validUsername, setValidUsername] = useState(true)
+    const [validPassword, setValidPassword] = useState(true)
+    const [validEmail, setValidEmail] = useState(true)
 
     useEffect(() => {
         fetchUsers()
@@ -19,6 +25,81 @@ export default function Employees() {
 
         setUsers(data['users'])
     }
+
+        /**
+     * Handles the validation of the formData based on user
+     * input. It checks name, short description, description, and
+     * price
+     * @param formData 
+     * @returns boolean
+     */
+        const formValidation = (formData: any) => {
+            const [firstname, lastname, username, password, email]: [any, any, any, any, any] = [formData.get('firstname'), formData.get('lastname'), formData.get('username'), formData.get('password'), formData.get('email')]
+            const [firstnameErrMsg, lastnameErrMsg, usernameErrMsg, passwordErrMsg, emailErrMsg]: [any, any, any, any, any] = [document.getElementById('firstname-err-msg'), document.getElementById('lastname-err-msg'), document.getElementById('username-err-msg'), document.getElementById('password-err-msg'), document.getElementById('email-err-msg')]
+            let valid = true
+    
+            if (firstname === "") {
+                firstnameErrMsg.innerHTML = "Can't be empty."
+                valid = false
+    
+                setValidFirstname(false)
+            } else {
+                firstnameErrMsg.innerHTML = ""
+                valid = true
+    
+                setValidFirstname(true)
+            }
+    
+            if (lastname === "") {
+                lastnameErrMsg.innerHTML = "Can't be empty."
+                valid = false
+    
+                setValidLastname(false)
+            } else {
+                lastnameErrMsg.innerHTML = ""
+                valid = true
+    
+                setValidLastname(true)
+            }
+    
+            if (username === "") {
+                usernameErrMsg.innerHTML = "Can't be empty."
+                valid = false
+    
+                setValidUsername(false)
+            } else {
+                usernameErrMsg.innerHTML = ""
+                valid = true
+    
+                setValidUsername(true)
+            }
+    
+            if (password === "") {
+                passwordErrMsg.innerHTML = "Can't be empty."
+                valid = false
+    
+                setValidPassword(false)
+            } else {
+                passwordErrMsg.innerHTML = ""
+                valid = true
+    
+                setValidPassword(true)
+            }
+    
+            if (email === "") {
+                emailErrMsg.innerHTML = "Can't be empty."
+                valid = false
+    
+                setValidEmail(false)
+            } else {
+                emailErrMsg.innerHTML = ""
+                valid = true
+    
+                setValidEmail(true)
+            }
+    
+            return valid
+        }
 
     return (
         <div className="ml-72 mr-8 my-8 w-full">
