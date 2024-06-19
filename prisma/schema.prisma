@@ -41,7 +41,7 @@ model User {
   role            ROLE        @default(Employee)
 
   order           Order[]
-  cart            Cart[]
+  cart            Cart?
 }
 
 model Victual {
@@ -60,7 +60,7 @@ model Victual {
 model Cart {
   id              Int         @id @default(autoincrement())
 
-  userId          String
+  userId          String      @unique
   user            User        @relation(fields: [userId], references: [id])
 
   victualId       String

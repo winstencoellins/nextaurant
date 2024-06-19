@@ -96,12 +96,12 @@ export default function Login() {
                         <input type="text" placeholder="johndoe" className={clsx("px-3 py-1.5 rounded-lg text-sm border", validUsername ? "border-slate-300" : "border-red-500")} name='username' /> 
                         <p className="text-red-500 text-xs mt-1" id='username-err-msg'></p>
                     </div>
-                    <div className="flex flex-col mb-5">
+                    <div className="flex flex-col mb-2">
                         <label>Password</label>
                         <input type={show ? 'text' : 'password'} placeholder="••••••" className={clsx("px-3 py-1.5 rounded-lg text-sm border", validPassword ? "border-slate-300" : "border-red-500")} name='password' id="show" />
                         <p className="text-red-500 text-xs mt-1" id='pass-err-msg'></p>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center mb-5">
                         <input type='checkbox' onChange={handleChange} />
                         <label className="text-xs ml-1">Show Password</label>
                     </div>
