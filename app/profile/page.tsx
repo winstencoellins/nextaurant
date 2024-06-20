@@ -19,27 +19,32 @@ export default function Profile() {
                 <p className="font-semibold text-xl mt-4">Winsten Coellins</p>
             </div>
 
-            <div className="mt-10">
-                <div className="mb-5">
+            <div className="mt-10 absolute py-5 left-0 bg-white w-screen">
+                <div className="mx-5 mb-3">
                     <h3 className="font-semibold">Username:</h3>
                     <p>nextaurant01</p>
                 </div>
-                <div className="mb-5">
+                <hr className="mx-2" />
+                <div className="mx-5 my-3">
                     <h3 className="font-semibold">Email Address:</h3>
                     <p>winsten.coellins@nextaurant.com</p>
                 </div>
-                <div className="mb-5">
+                <hr className="mx-2" />
+                <div className="mx-5 my-3">
                     <h3 className="font-semibold">First Name:</h3>
                     <p>Winsten</p>
                 </div>
-                <div className="mb-5">
+                <hr className="mx-2" />
+                <div className="mx-5 my-3">
                     <h3 className="font-semibold">Last Name:</h3>
                     <p>Coellins</p>
                 </div>
-                <div className="mb-5">
+                <hr className="mx-2" />
+                <div className="mx-5 my-3">
                     <h3 className="font-semibold">Password:</h3>
                     <p>n*****t</p>
                 </div>
+                <hr className="mx-2" />
             </div>
 
             <div className="absolute bottom-0 left-0 bg-white shadow-xl py-5 w-screen">
