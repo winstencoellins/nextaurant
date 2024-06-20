@@ -1,9 +1,9 @@
 'use client'
 
 import { FormEvent } from "react"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import clsx from "clsx"
+import { useRouter } from "next/navigation"
 
 export default function Login() {
     const [valid, setValid] = useState(true)
@@ -12,6 +12,21 @@ export default function Login() {
     const [show, setShow] = useState(false)
 
     const router = useRouter()
+
+    useEffect(() => {
+        handleRedirect()
+    }, [])
+
+    const handleRedirect = async () => {
+        const res = await fetch('http://localhost:3000/api/auth/user')
+        const data = await res.json()
+
+        if (data.session != undefined && data.role == 'Admin') {
+            return router.push('/admin/dashboard')
+        }
+
+        return router.push('/')
+    }
     
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -22,20 +37,25 @@ export default function Login() {
         // Handles the validation of the form
         let valid = formValidation(formData)
 
-        // if (valid) {
-        //     const res = await fetch('/api/victuals', {
-        //         method: 'POST',
-        //         body: formData,
-        //     })
-    
-    //         const data = await res.json()
-    
-    //         console.log(data.message)
-    
-    //         if (data.success) {
-    //             return router.push('/login')
-    //         }
-    //     }
+        if (valid) {
+            const res = await fetch('/api/auth/user', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: formData.get('username'),
+                    password: formData.get('password'),
+                })
+            })
+
+            const data = await res.json()
+
+            if (data.success) {
+                if (data.role == 'Admin') {
+                    return router.push('/admin/dashboard')
+                }
+
+                return router.push('/')
+            }
+        }
     }
 
     const handleChange = () => {
