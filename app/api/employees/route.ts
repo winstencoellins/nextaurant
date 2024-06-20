@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/db";
+import { hashPassword } from "@/auth";
 
 export async function POST(req: NextRequest, res: NextResponse) {
     const data = await req.formData();
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     })
 
     if (existUser != null) {
-        return NextResponse.json({ "success": false, "message": "User with this username already exist" })
+        return NextResponse.json({ success: false, message: "User with this username already exist" })
     }
 
 
@@ -28,12 +29,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
             lastName: lastName,
             username: username,
             email: email,
-            password: password,
+            password: await hashPassword(password),
             gender: gender,
         }
     })
 
-    return NextResponse.json({ "success": true, "message": "Successfully created a user" })
+    return NextResponse.json({ success: true, message: "Successfully created a user" })
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {

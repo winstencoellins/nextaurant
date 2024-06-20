@@ -135,13 +135,6 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
         return valid
     }
 
-    const handleShowPassword = () => {
-        if (show){
-            setShow(false)
-        } else {
-            setShow(true)
-        }
-    }
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -189,16 +182,6 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
                         <label className="mb-1 text-sm">Username</label>
                         <input type='text' value={username} onChange={(event) => setUsername(event.target.value)} placeholder='johndoe' className={clsx("px-3 py-2 border rounded-lg text-sm", validUsername ? "border-slate-300" : "border-red-500")} name="username" />
                         <p className="mt-1 text-xs text-red-500" id="username-err-msg"></p>
-                    </div>
-
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm">Password</label>
-                        <input type={show ? 'text' : 'password'} id="show" value={password} onChange={(event) => setPassword(event.target.value)} name='password' placeholder='johndoe' className={clsx("px-3 py-1.5 rounded-lg border text-sm", validPassword ? "border-slate-300" : "border-red-500")} />
-                        <p className="text-red-500 text-xs mt-1" id="password-err-msg"></p>
-                    </div>
-                    <div className="flex items-center mb-5 mt-1">
-                        <input type='checkbox' onChange={handleShowPassword} />
-                        <label className="text-xs ml-1">Show Password</label>
                     </div>
 
                     <div className="flex flex-col mb-5">

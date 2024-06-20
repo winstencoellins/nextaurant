@@ -16,7 +16,6 @@ export async function POST(req:NextRequest, res:NextResponse) {
             username: true,
             email: true,
             gender: true,
-            password: true,
         }
     })
     
