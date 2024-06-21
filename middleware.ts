@@ -11,6 +11,12 @@ export async function middleware(req: NextRequest) {
             return NextResponse.redirect(new URL('/', req.url))
         }
 
+        if (req.nextUrl.pathname == '/api/employees') {
+            if (req.cookies.get('role')?.value == 'Admin') {
+                return NextResponse.redirect(new URL('/admin/dashboard', req.url))
+            }
+        }
+
         return NextResponse.next()
     } catch (e) {
         return NextResponse.redirect(new URL('/login', req.url))
@@ -18,5 +24,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/admin/:path*', '/', '/vituals', '/profile', '/cart']
+    matcher: ['/admin/:path*', '/', '/vituals', '/profile', '/cart', '/api/employees', '/api/victuals']
 }
