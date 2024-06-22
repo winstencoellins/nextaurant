@@ -23,6 +23,6 @@ export async function middleware(req: NextRequest) {
     }
 }
 
-export const config = {
-    matcher: ['/admin/:path*', '/', '/vituals', '/profile', '/cart', '/api/employees', '/api/victuals']
-}
+// export const config = {
+//     matcher: ['/admin/:path*', '/', '/vituals', '/profile', '/cart', '/api/employees', '/api/victuals']
+// }

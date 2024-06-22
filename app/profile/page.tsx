@@ -45,13 +45,13 @@ export default function Profile() {
                     <p>n*****t</p>
                 </div>
                 <hr className="mx-2" />
+                {/* <div className="fixed bottom-0 left-0 bg-white shadow-xl py-5 w-screen"> */}
+                    <div className="w-11/12 mx-auto my-5 flex justify-around">
+                        <Link href='/profile/edit' className='border border-black px-3 py-2 rounded-xl w-full text-lg text-center'>Edit Profile</Link>
+                    </div>
+                {/* </div> */}
             </div>
 
-            <div className="absolute bottom-0 left-0 bg-white shadow-xl py-5 w-screen">
-                <div className="w-11/12 mx-auto flex justify-around">
-                    <Link href='/profile/edit' className='border border-black px-3 py-2 rounded-xl w-full text-lg text-center'>Edit Profile</Link>
-                </div>
-            </div>
         </div>
     )
 }
