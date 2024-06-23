@@ -67,7 +67,7 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
                 <Image src={placeholder} width={150} height={300} alt='placeholder' />
             </div>
 
-            <div className="mt-5 bg-white absolute left-0 bottom-0 rounded-tr-3xl rounded-tl-3xl">
+            <div className="h-2/5 overflow-scroll mt-5 bg-white absolute left-0 bottom-0 rounded-tr-3xl rounded-tl-3xl">
                 <div className="w-10/12 mx-auto py-10">
                     <div className="mb-5">
                         <h1 className="font-semibold text-xl">Description</h1>
