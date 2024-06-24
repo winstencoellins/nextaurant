@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -30,7 +31,7 @@ enum ROLE {
 }
 
 model User {
-  id              String      @id @default(uuid())
+  id              String      @unique @id @default(uuid())
   username        String      @unique
   email           String
   firstName       String  
@@ -41,7 +42,7 @@ model User {
   role            ROLE        @default(Employee)
 
   order           Order[]
-  cart            Cart?
+  cart            Cart[]
 }
 
 model Victual {
@@ -60,11 +61,13 @@ model Victual {
 model Cart {
   id              Int         @id @default(autoincrement())
 
-  userId          String      @unique
+  userId          String      
   user            User        @relation(fields: [userId], references: [id])
 
   victualId       String
   victual         Victual     @relation(fields: [victualId], references: [id])
+
+  quantity        Int
 }
 
 model Order {

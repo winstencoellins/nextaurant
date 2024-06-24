@@ -16,11 +16,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
         }
     })
 
-    return NextResponse.json({ "success": true, "message": "Victuals successfully created!" })
+    return NextResponse.json({ success: true, message: 'Victual successfully created!' }, { status: 201 })
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {
-    const victuals = await prisma.victual.findMany()
-
-    return NextResponse.json({ victuals })
+    return NextResponse.json({ message: 'Unauthorized request' }, { status: 403 })
 }

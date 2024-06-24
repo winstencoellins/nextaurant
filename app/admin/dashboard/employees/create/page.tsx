@@ -28,9 +28,16 @@ export default function CreateEmployee() {
         let valid = formValidation(formData)
 
         if (valid){
-            const res = await fetch('/api/employees', {
+            const res = await fetch('/api/add-employee', {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify({
+                    username: formData.get('username'),
+                    email: formData.get('email'),
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    password: formData.get('password'),
+                    gender: formData.get('gender')
+                }),
             })
 
             const data = await res.json()

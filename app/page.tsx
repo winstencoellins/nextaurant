@@ -14,6 +14,7 @@ export default function Home() {
   const [temp, setTemp] = useState([])
   const [menus, setMenus] = useState([])
   const [prev, setPrev] = useState('food')
+  const [first, setFirst] = useState('')
 
   const categories = [
     {id: 0, category: 'Food'},
@@ -32,14 +33,16 @@ export default function Home() {
    * and show it to the user.
    */
   const fetchMenus = async () => {
-    const res = await fetch('http://localhost:3000/api/victuals')
+    const res = await fetch('/api/victuals', {
+      method: 'POST'
+    })
     const data = await res.json()
 
     let result = data['victuals'].filter((menu: any) => menu.category == 'Food')
 
     setTemp(result)
     setMenus(data['victuals'])
-    
+    setFirst(data.name)
   }
 
 
@@ -82,7 +85,7 @@ export default function Home() {
   return (
     <div className="w-11/12 mx-auto mb-[120px]">
       <div className="flex justify-between items-center mt-5 mb-10">
-        <p>Welcome, Winsten!</p>
+        <p>Welcome, {first}!</p>
         <Image src={profilePlaceholder} width={60} height={60} alt='placeholder' className="rounded-full"/>
       </div>
 

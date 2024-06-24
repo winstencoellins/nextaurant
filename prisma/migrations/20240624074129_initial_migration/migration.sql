@@ -28,7 +28,7 @@ CREATE TABLE "Victual" (
     "category" "CATEGORY" NOT NULL,
     "name" TEXT NOT NULL,
     "shortDescription" TEXT NOT NULL,
-    "price" INTEGER NOT NULL,
+    "price" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "createdDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -40,6 +40,7 @@ CREATE TABLE "Cart" (
     "id" SERIAL NOT NULL,
     "userId" TEXT NOT NULL,
     "victualId" TEXT NOT NULL,
+    "quantity" INTEGER NOT NULL,
 
     CONSTRAINT "Cart_pkey" PRIMARY KEY ("id")
 );
@@ -49,7 +50,7 @@ CREATE TABLE "Order" (
     "id" SERIAL NOT NULL,
     "orderNumber" TEXT NOT NULL,
     "dateCreated" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "amount" INTEGER NOT NULL,
+    "amount" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "victualId" TEXT NOT NULL,
 
@@ -58,6 +59,9 @@ CREATE TABLE "Order" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Cart_userId_key" ON "Cart"("userId");
 
 -- AddForeignKey
 ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

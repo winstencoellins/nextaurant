@@ -27,14 +27,12 @@ export default function CreateVictuals() {
         let valid = formValidation(formData)
 
         if (valid) {
-            const res = await fetch('/api/victuals', {
+            const res = await fetch('/api/add-victual', {
                 method: 'POST',
                 body: formData,
             })
     
             const data = await res.json()
-    
-            console.log(data.message)
     
             if (data.success) {
                 return router.push('/admin/dashboard/victuals')

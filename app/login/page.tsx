@@ -12,21 +12,6 @@ export default function Login() {
     const [show, setShow] = useState(false)
 
     const router = useRouter()
-
-    useEffect(() => {
-        handleRedirect()
-    }, [])
-
-    const handleRedirect = async () => {
-        const res = await fetch('http://localhost:3000/api/auth/user')
-        const data = await res.json()
-
-        if (data.session != undefined && data.role == 'Admin') {
-            return router.push('/admin/dashboard')
-        }
-
-        return router.push('/')
-    }
     
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()

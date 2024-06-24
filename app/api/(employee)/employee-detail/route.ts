@@ -20,7 +20,7 @@ export async function POST(req:NextRequest, res:NextResponse) {
     })
     
 
-    return NextResponse.json({ "success": true, employee })
+    return NextResponse.json({ success: true, employee })
 }
 
 export async function PUT(req: NextRequest, res: NextResponse) {
@@ -36,7 +36,6 @@ export async function PUT(req: NextRequest, res: NextResponse) {
             firstName: first,
             lastName: last,
             username: username,
-            password: password,
             email: email,
             gender: gender
         }

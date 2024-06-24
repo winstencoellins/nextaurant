@@ -3,12 +3,6 @@ import prisma from "@/db";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export const config = {
-    api: {
-        bordyParse: false,
-    }
-}
-
 export async function POST(req: NextRequest, res: NextResponse) {
     const data = await req.json()
 
@@ -32,16 +26,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const token = await encrypt(payload)
 
-    cookies().set('session', token ,{httpOnly: true})
-    cookies().set('user', user.username)
-    cookies().set('role', user.role)
+    let date = new Date()
+
+    let expiryDate = date.getTime() + 1*2*60*60*1000
+
+    cookies().set('session', token, { expires: expiryDate })
+    cookies().set('user', user.username, { expires: expiryDate })
+    cookies().set('role', user.role, { expires: expiryDate })
+    cookies().set('first', user.firstName, { expires: expiryDate })
 
     return NextResponse.json({ success: true, message: 'Logged in successfully', role: user.role}, { status: 201 })
-}
-
-export async function GET(req: NextRequest, res: NextResponse) {
-    const session: any = cookies().get('session')?.value
-    const role: any = cookies().get('role')?.value
-
-    return NextResponse.json({ session: session, role: role })
 }

@@ -20,7 +20,9 @@ export default function Employees() {
     }, [])
 
     const fetchUsers = async () => {
-        const response = await fetch('http://localhost:3000/api/employees')
+        const response = await fetch('/api/employees', {
+            method: 'POST'
+        })
         const data = await response.json()
 
         setUsers(data['users'])

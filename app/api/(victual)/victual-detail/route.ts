@@ -18,7 +18,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         }
     })
 
-    return NextResponse.json({ victualDetail })
+    return NextResponse.json({ success: true, victualDetail }, { status: 201 })
 }
 
 export async function PUT(req: NextRequest, res: NextResponse) {
@@ -39,5 +39,9 @@ export async function PUT(req: NextRequest, res: NextResponse) {
         }
     })
 
-    return NextResponse.json({ "success": true })
+    return NextResponse.json({ success: true, message: 'Victual updated successfully' }, { status: 201 })
+}
+
+export async function GET(req: NextRequest, res: NextResponse) {
+    return NextResponse.json({ message: 'Unauthorized request' }, { status: 401 })
 }

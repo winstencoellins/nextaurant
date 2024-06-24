@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import arrow from '@/public/svgs/arrow.svg'
 import order from '@/public/svgs/order.svg'
 import placeholder from '@/public/svgs/menu-placeholder.svg'
+import { useRouter } from "next/navigation"
 
 
 export default function FoodDetail({ params }: {params: { slug: string }}) {
@@ -16,9 +17,27 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
     const [price, setPrice] = useState('')
     const [desc, setDesc] = useState('')
 
+    const router = useRouter()
+
     useEffect(() => {
         fetchVictualDetail()
     }, [])
+
+    const handleAddToCart = async () => {
+        const res = await fetch('/api/add-to-cart', {
+            method: 'POST',
+            body: JSON.stringify({
+                id: params.slug,
+                quantity: count
+            })
+        })
+
+        const data = await res.json()
+
+        if (data.success) {
+            return router.push('/')
+        }
+    }
 
     const fetchVictualDetail = async () => {
         const formData = new FormData();
@@ -75,7 +94,7 @@ export default function FoodDetail({ params }: {params: { slug: string }}) {
                     <p className="leading-relaxed">{desc}</p>
                     <div className="flex justify-between mt-10">
                         <button className="bg-black px-5 py-3 rounded-2xl text-white text-lg">Order Now</button>
-                        <button className="border border-black px-5 py-3 rounded-2xl">Add to Cart</button>
+                        <button className="border border-black px-5 py-3 rounded-2xl" onClick={handleAddToCart}>Add to Cart</button>
                     </div>
                 </div>
             </div>

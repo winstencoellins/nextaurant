@@ -12,7 +12,6 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
     const [lastName, setLastName] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [gender, setGender] = useState('')
 
     const [first, setFirst] = useState('')
@@ -47,7 +46,6 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
         setUsername(data['employee'].username)
         setEmail(data['employee'].email)
         setGender(data['employee'].gender)
-        setPassword(data['employee'].password)
 
         setFirst(data['employee'].firstName)
         setLast(data['employee'].lastName)
@@ -106,16 +104,6 @@ export default function EditEmployee ({ params }: { params: { slug: string } }) 
             setValidUsername(true)
         }
 
-        if (password === "") {
-            passwordErrMsg.innerHTML = "Can't be empty."
-            valid = false
-
-            setValidPassword(false)
-        } else {
-            passwordErrMsg.innerHTML = ""
-
-            setValidPassword(true)
-        }
 
         if (email === "") {
             emailErrMsg.innerHTML = "Can't be empty."

@@ -7,14 +7,7 @@ export async function middleware(req: NextRequest) {
         const valid = await decrypt(cookies().get('session')?.value)
 
         if (req.nextUrl.pathname.startsWith('/admin') && cookies().get('role')?.value != 'Admin') {
-            console.log('ADMIN PATH CALLED')
             return NextResponse.redirect(new URL('/', req.url))
-        }
-
-        if (req.nextUrl.pathname == '/api/employees') {
-            if (req.cookies.get('role')?.value == 'Admin') {
-                return NextResponse.redirect(new URL('/admin/dashboard', req.url))
-            }
         }
 
         return NextResponse.next()
@@ -23,6 +16,6 @@ export async function middleware(req: NextRequest) {
     }
 }
 
-// export const config = {
-//     matcher: ['/admin/:path*', '/', '/vituals', '/profile', '/cart', '/api/employees', '/api/victuals']
-// }
+export const config = {
+    matcher: ['/admin/:path*', '/', '/victuals/:path*', '/profile', '/cart']
+}
