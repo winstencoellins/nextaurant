@@ -1,5 +1,5 @@
-import prisma from "@/db";
-import { hashPassword } from "@/auth";
+import prisma from "../db";
+import { hashPassword } from "../auth";
 
 async function main() {
     try {
